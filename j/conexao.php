@@ -1,19 +1,13 @@
 <?php
-$Nome=$_POST["Nome"];
-$Endereco=$_POST["Endereco"];
-$Telefone=$_POST["Telefone"];
-echo "Seu nome é:$Nome <br> Seu endereco é:$Endereço <br> Seu telefone é:$Telefone <br>";
 
-$servidor="localhost";
-$user="root";
-$senha="";
-$banco="agenda";
-$conexao=mysqli_connect($servidor, $user, $senha, $banco);
-if(!$conexao){
-    echo "erro de conexão!";
-}
+$servidor = "localhost";
+$user = "root";
+$senha = "";
+$banco = "agenda";
 
-if($conexao=true){
-    echo "Tudo certo";
+
+$conexao = mysqli_connect($servidor, $user, $senha, $banco);
+
+if (!$conexao) {
+    die("Falha na conexão: " . mysqli_connect_error());
 }
-?>
