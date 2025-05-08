@@ -8,12 +8,20 @@
 <body>
     <h1>AGENDA</h1>
     <form method="POST" action="salvar.php">
-        Nome:<input type="text" id="Nome" name="Nome" placeholder="Seu nome aqui">
+        Nome:<input type="text" id="nome" name="nome" placeholder="Seu nome aqui">
         <br><br>
-        Endereço:<input type="text" id="Endereco" name="Endereco" placeholder="Seu endereço aqui">
+        Endereço:<input type="text" id="endereco" name="endereco" placeholder="Seu endereço aqui">
         <br><br>
-        Telefone:<input type="text" id="Telefone" name="Telefone" placeholder="Seu número celular aqui">
-        <button onclick="Cadastrar">Cadastrar</button>
+        Telefone:<input type="text" id="telefone" name="telefone" placeholder="Seu número celular aqui">
+        <input type="submit" value="Cadastrar">
     </form>
+ 
+    while($linha = mysqli_fetch_assoc($res)){
+    echo $linha['Nome']."_". 
+         $linha['Endereco']."_". 
+         $linha['Telefone']."_
+         <a href='editar.php?id=".$linha["id"]."'>Editar</a>";
+}
+
 </body>
 </html>
