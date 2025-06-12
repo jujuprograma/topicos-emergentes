@@ -1,39 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Máscara </title>
+    <title>Máscara</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input {
+            padding: 5px;
+            width: 250px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+        }
+    </style>
 </head>
-
 <body>
-    <h1> Formulário bonitinho </h1>
-    <form method="POST" action="mascara.php">
-    Nome:<input type="text" id="nome" placeholder="Seu nome aqui">
-    <br><br>
-    CPF:<input type="text" id="CPF" placeholder="000.000.000-00" maxlength="14">
-    <br><br>
-    Número celular: <input type="text" id="celular" placeholder="(00)00000-0000" maxlength="13">
-    <br><br>
-    Data d nasc: <input type="text" id="nasc" placeholder="00/00/0000" maxlength="10">
-    <br><br>
-    CEP: <input type="text" id="CEP" placeholder="00000-000" maxlength="9">
-    <br><br>
-    Email: <input type="text" id="email" placeholder="email@gmail.com">
-</form>
-</body>
+    <h1>Formulário bonitinho</h1>
+    <form id="formulario">
+        Nome:<br>
+        <input type="text" id="nome" placeholder="Seu nome aqui"><br><br>
 
-<script>
-    const input = document.getElementById('CPF');
-    input.addEventListener('input', formatarCPF);
-    
-    function formatarCPF(e) {
-    let valor = e.target.value;
-    valor = valor.replace(/\D/g, "");
-    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
-    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
-    valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-    e.target.value = valor;}
-    
+        CPF:<br>
+        <input type="text" id="CPF" placeholder="000.000.000-00" maxlength="14"><br><br>
+
+        Número celular:<br>
+        <input type="text" id="celular" placeholder="(00)00000-0000" maxlength="15"><br><br>
+
+        Data de nascimento:<br>
+        <input type="text" id="nasc" placeholder="00/00/0000" maxlength="10"><br><br>
+
+        CEP:<br>
+        <input type="text" id="CEP" placeholder="00000-000" maxlength="9"><br><br>
+
+        Email:<br>
+        <input type="email" id="email" placeholder="email@gmail.com"><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+       
+        document.getElementById('CPF').addEventListener('input', function (e) {
+            let valor = e.target.value.replace(/\D/g, "");
+            valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+            valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+            valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+            e.target.value = valor;
+        });
+
+
+        document.getElementById('celular').addEventListener('input', function (e) {
+            let valor = e.target.value.replace(/\D/g, "");
+            valor = valor.replace(/^(\d{2})(\d)/g, "($1)$2");
+            valor = valor.replace(/(\d{5})(\d{4})$/, "$1-$2");
+            e.target.value = valor;
+        });
+
+
+        document.getElementById('nasc').addEventListener('input', function (e) {
+            let valor = e.target.value.replace(/\D/g, "");
+            valor = valor.replace(/(\d{2})(\d)/, "$1/$2");
+            valor = valor.replace(/(\d{2})(\d)/, "$1/$2");
+            e.target.value = valor;
+        });
+
+        // CEP
+        document.getElementById('CEP').addEventListener('input', function (e) {
+            let valor = e.target.value.replace(/\D/g, "");
+            valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+            e.target.value = valor;
+        });
+
+        
+        document.getElementById('formulario').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const campos = ['nome', 'CPF', 'celular', 'nasc', 'CEP', 'email'];
+            let erro = false;
+
+            campos.forEach(id => {
+                const valor = document.getElementById(id).value.trim();
+                if (!valor) {
+                    alert(`O campo ${id} está vazio!`);
+                    erro = true;
+                }
+            });
+
+            if (!erro) {
+                alert('Formulário enviado com sucesso!');
+            
+            }
+        });
     </script>
+</body>
 </html>
