@@ -1,0 +1,33 @@
+<?php
+// a)
+$v1 = range(0, 12);
+echo "Conteúdo de v1:\n";
+foreach ($v1 as $valor) {
+    echo $valor . " ";
+}
+echo "\n\n";
+
+// b)
+$v2 = range(0, 100, 10);
+echo "Conteúdo de v2:\n";
+foreach ($v2 as $valor) {
+    echo $valor . " ";
+}
+echo "\n\n";
+
+// c)
+$v3 = range('a', 'i');
+echo "Conteúdo de v3:\n";
+foreach ($v3 as $valor) {
+    echo $valor . " ";
+}
+echo "\n\n";
+
+// d)
+$v4 = range('e', 'a');
+echo "Conteúdo de v4:\n";
+foreach ($v4 as $valor) {
+    echo $valor . " ";
+}
+echo "\n";
+?>
